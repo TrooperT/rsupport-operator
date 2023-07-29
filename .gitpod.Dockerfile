@@ -7,7 +7,7 @@ ARG OS
 ENV OS=${OS:-linux}
 ARG OPERATOR_SDK_VERSION
 ENV OPERATOR_SDK_VERSION=${OPERATOR_SDK_VERSION:-v1.31.0}
-ENV OPERATOR_SDK_DL_URL= https://github.com/operator-framework/operator-sdk/releases/download/${OPERATOR_SDK_VERSION}
+ENV OPERATOR_SDK_DL_URL=https://github.com/operator-framework/operator-sdk/releases/download/${OPERATOR_SDK_VERSION}
 
 RUN cd /tmp && curl -LO ${OPERATOR_SDK_DL_URL}/operator-sdk_${OS}_${ARCH} &&\
     curl -LO ${OPERATOR_SDK_DL_URL}/checksums.txt &&\
