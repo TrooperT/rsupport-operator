@@ -3,8 +3,7 @@ FROM gitpod/workspace-go:${WORKSPACE_GO_VERSION:-2023-07-20-19-56-24}
 
 ARG ARCH
 ENV ARCH=${ARCH:-amd64}
-ARG OS
-ENV OS=${OS:-linux}
+ENV OS=linux
 ARG OPERATOR_SDK_VERSION
 ENV OPERATOR_SDK_VERSION=${OPERATOR_SDK_VERSION:-v1.31.0}
 ENV OPERATOR_SDK_DL_URL=https://github.com/operator-framework/operator-sdk/releases/download/${OPERATOR_SDK_VERSION}
