@@ -9,11 +9,11 @@ ARG OPERATOR_SDK_VERSION
 ENV OPERATOR_SDK_VERSION=${OPERATOR_SDK_VERSION:-v1.31.0}
 ENV OPERATOR_SDK_DL_URL=https://github.com/operator-framework/operator-sdk/releases/download/${OPERATOR_SDK_VERSION}
 
-RUN cd /tmp && curl -LO ${OPERATOR_SDK_DL_URL}/operator-sdk_${OS}_${ARCH} &&\
-    curl -LO ${OPERATOR_SDK_DL_URL}/checksums.txt &&\
-    curl -LO ${OPERATOR_SDK_DL_URL}/checksums.txt.asc &&\
-    gpg --keyserver keyserver.ubuntu.com --recv-keys 052996E2A20B5C7E &&\
-    gpg -u "Operator SDK (release) <cncf-operator-sdk@cncf.io>" --verify checksums.txt.asc &&\
-    grep operator-sdk_${OS}_${ARCH} checksums.txt | sha256sum -c - &&\
-    chmod +x operator-sdk_${OS}_${ARCH} &&\ 
-    sudo mv operator-sdk_${OS}_${ARCH} /usr/local/bin/operator-sdk
+RUN mkdir -p /tmp/osdk && curl -L ${OPERATOR_SDK_DL_URL}/operator-sdk_${OS}_${ARCH} -o /tmp/osdk/operator-sdk_${OS}_${ARCH}
+RUN curl -L ${OPERATOR_SDK_DL_URL}/checksums.txt -o /tmp/osdk/checksums.txt
+RUN curl -L ${OPERATOR_SDK_DL_URL}/checksums.txt.asc -o /tmp/osdk/checksums.txt.asc
+RUN gpg --keyserver keyserver.ubuntu.com --recv-keys 052996E2A20B5C7E
+RUN cd /tmp/osdk && gpg -u "Operator SDK (release) <cncf-operator-sdk@cncf.io>" --verify checksums.txt.asc
+RUN cd /tmp/osdk && grep operator-sdk_${OS}_${ARCH} checksums.txt | sha256sum -c -
+RUN chmod +x /tmp/osdk/operator-sdk_${OS}_${ARCH} 
+RUN sudo mv /tmp/osdk/operator-sdk_${OS}_${ARCH} /usr/local/bin/operator-sdk
