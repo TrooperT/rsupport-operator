@@ -1,5 +1,5 @@
 ARG WORKSPACE_GO_VERSION
-FROM registry01.vcf.homelabs.io/gitpod/workspace-go:${WORKSPACE_GO_VERSION:-2023-07-20-19-56-24}
+FROM gitpod/workspace-go:${WORKSPACE_GO_VERSION:-2023-07-20-19-56-24}
 
 ARG ARCH
 ENV ARCH=${ARCH:-amd64}
