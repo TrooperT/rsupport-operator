@@ -3,8 +3,7 @@
 # Please adjust to your needs (see https://www.gitpod.io/docs/config-gitpod-file)
 # and commit this file to your remote git repository to share the goodness with others.
 
-image: troopert/workspace-go-operator-sdk:latest
-   # file: .gitpod.Dockerfile
+image: troopert/workspace-operator-sdk:v1.31.0
 
 #tasks:
 #  - init: npm ci
